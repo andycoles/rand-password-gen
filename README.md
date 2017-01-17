@@ -3,8 +3,7 @@ A simple, random and secure password generator for Node.js and browsers.
 
 ## Installation
 
-    $ git clone https://github.com/andycoles/passwordGen
-    $ cd passwordGen
+    $ npm install rand-password-gen
     $ npm i
     $ npm run test
 
