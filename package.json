@@ -1,0 +1,17 @@
+{
+  "name": "rand-password-gen",
+  "version": "1.0.0",
+  "description": "A simple, random and secure password generator for Node.js and browsers.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Andy Coles",
+  "license": "MIT",
+  "devDependencies": {
+    "jest-cli": "^18.1.0"
+  }
+}
