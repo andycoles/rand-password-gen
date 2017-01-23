@@ -1,1 +1,1 @@
-module.exports = require('src/passwordGen');
+module.exports = require('src/Password');
