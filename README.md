@@ -54,7 +54,8 @@ Customize by passing array of inclusion rules.
     // -> e.g. ;q4K=^fNUFJe#jEGjw4
 
 options *Object*.
-    {
+
+    var options = {
         // *number* - length of password
         length: 18,
         // *Array* - characters to exclude from password
