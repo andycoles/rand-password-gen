@@ -54,20 +54,20 @@ Customize by passing array of inclusion rules.
     // -> e.g. ;q4K=^fNUFJe#jEGjw4
 
 options *Object*.
-{
-    // *number* - length of password
-    length: 18,
-    // *Array* - characters to exclude from password
-    exclusions: ['(', '0','o', 'O', ')'],
-    // *Array* - of objects that describe the inclusions rules, i.e. must have 3 upper-case letters
-    inclusionRules:
-    [
-        // *Object*
-        {
-            // *number* - minimum number of characters of this set in password
-            minNumChars: 3,
-            // *Array* - characters randomly selected from this set for rule
-            charSet: charRange('A', 'Z'),
-        }
-    ]
-};
+    {
+        // *number* - length of password
+        length: 18,
+        // *Array* - characters to exclude from password
+        exclusions: ['(', '0','o', 'O', ')'],
+        // *Array* - of objects that describe the inclusions rules, i.e. must have 3 upper-case letters
+        inclusionRules:
+        [
+            // *Object*
+            {
+                // *number* - minimum number of characters of this set in password
+                minNumChars: 3,
+                // *Array* - characters randomly selected from this set for rule
+                charSet: charRange('A', 'Z'),
+            }
+        ]
+    };
