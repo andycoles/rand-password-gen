@@ -6,6 +6,10 @@
     "directories": {
         "spec": "spec"
     },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/andycoles/rand-password-gen.git"
+    },
     "scripts": {
         "test": "jasmine spec/tests/PasswordSpec.js"
     },
