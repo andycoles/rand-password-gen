@@ -6,7 +6,6 @@ A simple, random and secure password generator for Node.js and browsers.
     $ npm install rand-password-gen
     $ npm i
     $ npm test
-    $ ./runFullTest.sh
 
 ## Usage
 ### from the browser
