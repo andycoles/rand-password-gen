@@ -40,7 +40,7 @@ function Password(options) {
         }.bind(this));
         if (this.options.length < necessaryChars) {
             console.error('Password: invalidParameter in options: "length" and ' +
-                "inclusionRules" you cannot specify a password of ' +
+                '"inclusionRules" you cannot specify a password of ' +
                 this.options.length + '. Since you have ' + necessaryChars.length +
                 ' characters required in your inclusionRules option.');
             return false;
