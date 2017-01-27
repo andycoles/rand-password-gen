@@ -10,23 +10,28 @@ A simple, random and secure password generator for Node.js and browsers.
 ## Usage
 ### from the browser
 
-    var Password = require('rand-password-gen');
-    var myNewPassword = new Password({length: 16}).get();
+    ```js
+    var password = require('rand-password-gen');
+    var myNewPassword = password({length: 16})
     // -> e.g. xc00K8196#>2LS\Y
+    ```
 
-Customize by passing array of characters to exclude from password.
+### Customize by passing array of characters to exclude from password.
 
-    var Password = require('rand-password-gen');
+    ```js
+    var password = require('rand-password-gen');
     var options = {
         length: 16,
         exclusions: ['(', '0','o', 'O', ')', '~', '\\', '/', '|', '}', '{', '[', ']', 'l', '1']
     };
-    var myNewPassword = new Password(options).get();
+    var myNewPassword = password(options);
     // -> e.g. Yk>N*ZCktFizQ_ZN
+    ```
 
-Customize by passing array of inclusion rules.
+### Customize by passing array of inclusion rules.
 
-    var Password = require('rand-password-gen');
+    ```js
+    var password = require('rand-password-gen');
     var charRange = require('rand-password-gen/src/util/genAsciiCharRangeArr');
     var options = {
         length: 19,
@@ -49,11 +54,12 @@ Customize by passing array of inclusion rules.
             }
         ]
     };
-    var myNewPassword = new Password(options).get();
+    var myNewPassword = password(options);
     // -> e.g. ;q4K=^fNUFJe#jEGjw4
+    ```
 
-options *Object*.
-
+### options *Object*.
+    ```js
     var options = {
         // *number* - length of password
         length: 18,
@@ -71,3 +77,4 @@ options *Object*.
             }
         ]
     };
+    ```

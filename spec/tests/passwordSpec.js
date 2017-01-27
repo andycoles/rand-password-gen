@@ -1,9 +1,9 @@
-var Password = require('../../src/Password'),
-    assertions = require('./assertions'),
+var password = require('../../src/password'),
+    assertions = require('./assertions2'),
     charRange = require('../../src/util/genAsciiCharRangeArr');
 
 assertions.forEach(function(assert) {
-    var pw = new Password(assert).get();
+    var pw = password(assert);
     var exl = assert.exclusions;
     var inc = assert.inclusionRules;
     var assertStr = 'password of length ' + assert.length + '. ';
@@ -11,7 +11,7 @@ assertions.forEach(function(assert) {
         assertStr += 'excluded characters: ' + exl.join(',') + '. ';
     }
     if (inc && inc.constructor === Array) {
-        assertStr += 'inclusion rules present. (check assertions.js) ';
+        assertStr += 'inclusion rules present. (check assertions) ';
     }
     if (pw) {
         assertStr += 'password: ' + pw;
@@ -35,7 +35,7 @@ assertions.forEach(function(assert) {
 
             it('does not return a password if invalid params are passed', function() {
                 if (assert.length === null || typeof assert.length === ('undefined' || 'string')) {
-                    expect(pw).toBe(undefined);
+                    expect(pw).toBe(false);
                 }
             });
 
