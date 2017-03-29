@@ -1,5 +1,5 @@
 var password = require('../../src/password'),
-    assertions = require('./assertions2'),
+    assertions = require('./assertions'),
     charRange = require('../../src/util/genAsciiCharRangeArr');
 
 assertions.forEach(function(assert) {

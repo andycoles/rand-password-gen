@@ -1,19 +1,43 @@
 'use-strict';
 var charRange = require('./util/genAsciiCharRangeArr');
 
+// predefined charSet constants
+var UPPERCASE = 'UPPERCASE',
+    LOWERCASE = 'LOWERCASE',
+    DIGIT = 'DIGIT',
+    SPECIAL_CHAR = 'SPECIAL_CHAR';
+
+var DEFAULT_OPTIONS = {
+    // ASCII character decimal range, i.e. all printable chars excluding Space and Delete
+    charMin: 33,
+    charMax: 126,
+    length: 32,
+    // What chars and how many of each set should be in password
+    exclusions: [],
+    inclusionRules: [
+        {
+            minNumChars: 3,
+            charSet: UPPERCASE
+        },
+        {
+            minNumChars: 3,
+            charSet: LOWERCASE
+        },
+        {
+            minNumChars: 3,
+            charSet: SPECIAL_CHAR
+        },
+        {
+            minNumChars: 3,
+            charSet: DIGIT
+        }
+    ]
+};
+
 function password(options) {
     var possibleCharsAfterExcl,
         necessaryChars = 0,
         charArr = [];
-
-    var DEFAULT_OPTIONS = {
-        // ASCII character decimal range, i.e. all printable chars excluding Space and Delete
-        charMin: 33,
-        charMax: 126,
-        length: 16,
-        // What chars cannot be in password - custom
-        exclusions: ['(', '0', 'o', 'O', ')', '~', '\\', '/', '|', '}', '{', '[', ']', 'l', '1']
-    };
 
     var options = Object.assign({}, DEFAULT_OPTIONS, options);
 
@@ -21,17 +45,29 @@ function password(options) {
         lastPosCharBeforeExcl = String.fromCharCode(options.charMax);
 
     if (typeof options.length !== 'number') {
-        console.error('Password: invalidParameter in options: "length" must be of type number');
+        console.error('password: invalidParameter in options: "length" must be of type number');
         return false;
     }
+    if (typeof options.length < 12) {
+        console.warn('password: passwords of character length of 14 are not recommended');
+    }
     if (options.exclusions && options.exclusions.constructor !== Array) {
-        console.error('Password: invalidParameter in options: "exclusions" must be an Array');
+        console.error('password: invalidParameter in options: "exclusions" must be an Array');
         return false;
     }
     if (typeof options.inclusionRules !== 'undefined' && options.inclusionRules.constructor === Array) {
         // final inclusions, exclusions taking precedent
         options.inclusionRules.forEach(function(rule) {
+            // charSet can be represented as a string, not an array. If the array is a constant, provide cooresponding array, else use the string
+            if (typeof rule.charSet === 'string' && rule.charSet.length > 1) {
+                rule.charSet = _getCharSetFromConstant(rule.charSet);
+            }
             rule.charSet = _arrDiff(rule.charSet, options.exclusions);
+            // check that after exclusions there are still some characters to pull from this inclusionRule charSet
+            if (rule.charSet.length <= 0) {
+                console.error('password: invalidParamer in options: one of your inclusionRules were negated completetly by your exclusions');
+                return false;
+            }
             rule.finalChars = [];
             for (var i = 0; i < rule.minNumChars; i++) {
                 necessaryChars += 1;
@@ -39,10 +75,10 @@ function password(options) {
             }
         });
         if (options.length < necessaryChars) {
-            console.error('Password: invalidParameter in options: "length" and ' +
+            console.error('password: invalidParameter in options: "length" and ' +
                 '"inclusionRules" you cannot specify a password of ' +
                 options.length + '. Since you have ' + necessaryChars.length +
-                ' characters required in your inclusionRules option.');
+                ' characters required in your inclusionRules option');
             return false;
         }
         options.inclusionRules.forEach(function(rule) {
@@ -62,6 +98,27 @@ function password(options) {
     return charArr.join('');
 }
 
+function _getCharSetFromConstant(charSetStr) {
+    var charSet;
+    switch(charSetStr) {
+        case UPPERCASE:
+            charSet = charRange('A', 'Z');
+            break;
+        case LOWERCASE:
+            charSet = charRange('a', 'z');
+            break;
+        case DIGIT:
+            charSet = charRange('0', '9');
+            break;
+        case SPECIAL_CHAR:
+            charSet = charRange('!', '/').concat(charRange(':', '@')).concat(charRange('[', '`')).concat(charRange('{', '~'));
+            break;
+        default:
+            charSet = charSetStr;
+    }
+    return charSet;
+}
+
 // substract arr2 from arr1
 function _arrDiff(arr1, arr2) {
     return arr1.filter(function(itemA) {
@@ -75,7 +132,7 @@ function _arrDiff(arr1, arr2) {
     });
 }
 
-// Fisher-Yates shuffle, rand permutation of finite set arr
+// random permutation of character array set
 function _arrShuffle(arr) {
     var currentIndex = arr.length,
         temporaryValue, randomIndex;

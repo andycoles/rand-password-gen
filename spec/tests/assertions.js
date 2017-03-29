@@ -9,11 +9,11 @@ module.exports = [
     {length: 'string'},
     {length: 'string', exclusions: 'string'},
     {length: 'string', exclusions: ['1','2','3']},
-    {length: 16, exclusions: 'string'},
+    {length: 32, exclusions: 'string'},
     {length: 32},
-    {length: 16, exclusions: ['(', '0','o', 'O', ')', '~', '\\', '/', '|', '}', '{', '[', ']', 'l', '1']},
+    {length: 32, exclusions: ['(', '0','o', 'O', ')', '~', '\\', '/', '|', '}', '{', '[', ']', 'l', '1']},
     {
-        length: 19,
+        length: 36,
         exclusions: ['(', '0','o', 'O', ')', '~', '\\', '/', '|', '}', '{', '[', ']', 'l', '1', '2', '3', 'a', 'b', 'C'],
         inclusionRules: [
             {
@@ -25,7 +25,7 @@ module.exports = [
                 charSet: charRange('a', 'z'),
             },
             {
-                minNumChars: 1,
+                minNumChars: 3,
                 charSet: charRange('0', '9')
             }
         ]

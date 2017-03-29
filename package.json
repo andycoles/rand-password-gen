@@ -1,21 +1,25 @@
 {
-    "name": "rand-password-gen",
-    "version": "0.0.0",
-    "description": "A simple, random and secure password generator for Node.js and browsers.",
-    "main": "index.js",
-    "directories": {
-        "spec": "spec"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/andycoles/rand-password-gen.git"
-    },
-    "scripts": {
-        "test": "jasmine spec/tests/passwordSpec.js"
-    },
-    "author": "Andy Coles",
-    "license": "MIT",
-    "devDependencies": {
-        "jasmine": "^2.5.3"
-    }
+  "name": "rand-password-gen",
+  "version": "0.0.0",
+  "description": "A simple, random and secure password generator for Node.js and browsers.",
+  "main": "index.js",
+  "directories": {
+    "spec": "spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andycoles/rand-password-gen.git"
+  },
+  "scripts": {
+    "test": "jasmine spec/tests/passwordSpec.js",
+    "build-dev": "rm -rf dist; mkdir dist; browserify demo.js > dist/demo.js",
+    "build-prod": "rm -rf dist; mkdir dist; browserify demo.js | uglifyjs > dist/demo.js"
+  },
+  "author": "Andy Coles",
+  "license": "MIT",
+  "devDependencies": {
+    "browserify": "^14.0.0",
+    "jasmine": "^2.5.3",
+    "uglify-js": "^2.7.5"
+  }
 }
