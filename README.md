@@ -39,20 +39,20 @@ var options = {
     length: 19,
     exclusions: ['(', '0','o', 'O', ')', '~', '\\', '/', '|', '}', '{', '[', ']', 'l', '1', '2', '3', 'a', 'b', 'C'],
     inclusionRules: [
-        // password must include at least 3 upper-case letter
+        // password must include at least 3 upper-case letters
         {
             minNumChars: 3,
-            charSet: charRange('A', 'Z'),
+            charSet: 'UPPERCASE',
         },
-        // password must include at least 3 lower-case letter
+        // password must include at least 3 lower-case letters
         {
             minNumChars: 3,
-            charSet: charRange('a', 'z'),
+            charSet: 'LOWERCASE',
         },
         // password must include at least 1 number
         {
             minNumChars: 1,
-            charSet: charRange('0', '9')
+            charSet: 'SPECIAL_CHAR'
         }
     ]
 };
@@ -76,7 +76,8 @@ var options = {
             // *number* - minimum number of characters of this set in password
             minNumChars: 3,
             // *Array* - characters randomly selected from this set for rule
-            charSet: charRange('A', 'Z'),
+            // 'UPPERCASE' | 'LOWERCASE' | 'DIGIT' | 'SPECIAL_CHAR'
+            charSet: 'UPPERCASE',
         }
     ]
 };
