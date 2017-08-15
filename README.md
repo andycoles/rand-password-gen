@@ -5,7 +5,6 @@ A simple, random and secure password generator for Node.js and browsers.
 
 ```sh
 $ npm install rand-password-gen
-$ npm i
 $ npm test
 ```
 
@@ -14,7 +13,7 @@ $ npm test
 
 ```js
 var password = require('rand-password-gen');
-var myNewPassword = password({length: 16})
+var myNewPassword = password({length: 16});
 // -> e.g. xc00K8196#>2LS\Y
 ```
 
