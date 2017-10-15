@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     $button.addEventListener('click', function() {
         var t0 = performance.now();
         var opts = {
-            length: 32,
-            exclusions: ['(', '0','o', 'O', ')', '~', '\\', '/', '|', '}', '{', '[', ']', 'l', '1'],
+            length: 14,
+            exclusions: ['(', '0','o', 'O', ')', '~', '\\', '/',
+              '|', '}', '{', '[', ']', 'l', '1', ',', '.', '^',
+              '`',"'", '"'],
             inclusionRules: [
                 {
                     minNumChars: 3,
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     charSet: 'LOWERCASE'
                 },
                 {
-                    minNumChars: 3,
+                    minNumChars: 2,
                     charSet: 'SPECIAL_CHAR'
                 },
                 {

@@ -31,5 +31,6 @@ module.exports = [
         ]
     },
     {length: 20, exclusions: ['a', 'a', 'a', 'a', 'a']},
-    {length: 11, exclusions: ['2','4','6','8']}
+    {length: 11},
+    {length: 14}
 ];

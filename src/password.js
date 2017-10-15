@@ -48,8 +48,8 @@ function password(options) {
         console.error('password: invalidParameter in options: "length" must be of type number');
         return false;
     }
-    if (typeof options.length < 12) {
-        console.warn('password: passwords of character length of 14 are not recommended');
+    if (options.length < 14) {
+        console.warn('password: passwords of character length less than 14 are not recommended');
     }
     if (options.exclusions && options.exclusions.constructor !== Array) {
         console.error('password: invalidParameter in options: "exclusions" must be an Array');
@@ -76,9 +76,7 @@ function password(options) {
         });
         if (options.length < necessaryChars) {
             console.error('password: invalidParameter in options: "length" and ' +
-                '"inclusionRules" you cannot specify a password of ' +
-                options.length + '. Since you have ' + necessaryChars.length +
-                ' characters required in your inclusionRules option');
+                '"inclusionRules." inclusionRules character minimum cannot exceed length');
             return false;
         }
         options.inclusionRules.forEach(function(rule) {

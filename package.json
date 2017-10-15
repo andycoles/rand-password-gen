@@ -11,6 +11,7 @@
     "url": "https://github.com/andycoles/rand-password-gen.git"
   },
   "scripts": {
+    "build": "npm run build-prod",
     "test": "jasmine spec/tests/passwordSpec.js",
     "build-dev": "rm -rf dist; mkdir dist; browserify demo.js > dist/demo.js",
     "build-prod": "rm -rf dist; mkdir dist; browserify demo.js | uglifyjs > dist/demo.js"
