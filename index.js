@@ -1,1 +1,1 @@
-module.exports = require('src/password');
+module.exports = require('./src/password');
