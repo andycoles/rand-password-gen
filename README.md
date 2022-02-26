@@ -1,5 +1,10 @@
 #rand-password-gen
-A simple, random and secure password generator for Node.js and browsers.
+*** Please Note ***
+This is not a cryptographically secure random password generator. It uses Math.random in its underlying random shuffling algorithm. *This is a personal breakable toy learning exercise and is not to be used in real life production settings*. It is better to use already established libraries for generating random strings.
+
+Source: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+
+A simple, random password generator for Node.js and browsers.
 
 ## Installation
 
